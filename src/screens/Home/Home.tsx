@@ -6,29 +6,40 @@ import {
   NativeEventEmitter,
 } from 'react-native';
 import React, {useEffect} from 'react';
-import {removeListener} from '@reduxjs/toolkit';
 
 const {CalendarModule} = NativeModules;
 const eventEmmiter = new NativeEventEmitter(CalendarModule);
 
 export default function Home() {
-  useEffect(() => {
-    eventEmmiter.addListener('eventCount', eventCount =>
-      console.log(eventCount),
-    );
+  // useEffect(() => {
+  //   eventEmmiter.addListener('eventCount', eventCount =>
+  //     console.log(eventCount),
+  //   );
 
-    return () => {
-      eventEmmiter.removeAllListeners();
-    };
-  }, []);
+  //   return () => {
+  //     eventEmmiter.removeAllListeners();
+  //   };
+  // }, []);
 
   const onPress = async () => {
+    //ios
     try {
-      const result = await CalendarModule.createCalendarEvent();
-      console.log(result);
+      const eventId = await CalendarModule.createCalendarEvent(
+        'Party',
+        'my house',
+      );
+      console.log(`Created a new event with id ${eventId}`);
     } catch (e) {
-      console.log(e);
+      console.error(e);
     }
+
+    //Android
+    // try {
+    //   const result = await CalendarModule.createCalendarEvent();
+    //   console.log(result);
+    // } catch (e) {
+    //   console.log(e);
+    // }
   };
 
   return (

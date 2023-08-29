@@ -1,12 +1,6 @@
-//
 //  RCTCalendarModule.h
-//  TestApp
-//
-//  Created by Bunyod on 28/08/23.
-//
+#import <React/RCTBridgeModule.h>
+#import <React/RCTEventEmitter.h>
 
-#ifndef RCTCalendarModule_h
-#define RCTCalendarModule_h
-
-
-#endif /* RCTCalendarModule_h */
+@interface RCTCalendarModule : RCTEventEmitter <RCTBridgeModule>
+@end

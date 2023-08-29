@@ -1,8 +1,29 @@
-//
-//   To export a module named RCTCalendarModule RCT_EXPORT_MODULE();  @end.m
-//  TestApp
-//
-//  Created by Bunyod on 28/08/23.
-//
+// RCTCalendarModule.m
+#import "RCTCalendarModule.h"
+#import <React/RCTLog.h>
+@implementation RCTCalendarModule
 
-#import <Foundation/Foundation.h>
+// To export a module named RCTCalendarModule
+RCT_EXPORT_MODULE();
+
+RCT_EXPORT_METHOD(createCalendarEvent:(NSString *)title
+                 location:(NSString *)location
+                 resolver:(RCTPromiseResolveBlock)resolve
+                 rejecter:(RCTPromiseRejectBlock)reject)
+{
+ NSInteger eventId = 123;
+ if (eventId) {
+    resolve(@(eventId));
+  } else {
+    reject(@"event_failure", @"no event id returned", nil);
+  }
+}
+
+
+
+- (NSDictionary *)constantsToExport
+{
+ return @{ @"DEFAULT_EVENT_NAME": @"New TRACKKER BUNI" };
+}
+
+@end
